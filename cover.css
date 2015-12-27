@@ -10,6 +10,7 @@ img {
 }
 
 
+
 .btn-default,
 .btn-default:hover,
 .btn-default:focus {
@@ -37,6 +38,10 @@ img {
   position: relative;
   top: 300px;
   height: 900px;
+}
+
+#contact {
+  height: 450px;
 }
 
 #blurb {
@@ -150,11 +155,11 @@ body {
 
 @media (min-width: 768px) {
    .masthead {
-    position: fixed;
+
     top: 0;
   }
   .mastfoot {
-    position: fixed;
+
     bottom: 0;
   }
   .site-wrapper-inner {

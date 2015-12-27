@@ -5,6 +5,10 @@ a:hover {
   color: #fff;
 }
 
+img {
+  border-radius: 10px;
+}
+
 
 .btn-default,
 .btn-default:hover,
@@ -133,6 +137,10 @@ body {
   font-weight: bold;
 }
 
+.top-buffer {
+  margin-top:20px;
+}
+
 
 .mastfoot {
   color: #999;
@@ -140,7 +148,6 @@ body {
 }
 
 
-/
 @media (min-width: 768px) {
    .masthead {
     position: fixed;

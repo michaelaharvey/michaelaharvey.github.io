@@ -5,6 +5,12 @@ a:hover {
   color: #fff;
 }
 
+.rmimg {
+  background-color: white;
+  width: 80px;
+  margin: 0 auto;
+  border-radius: 5px;
+}
 
 .projectlist {
   background-color: white;
@@ -74,7 +80,7 @@ li {
 }
 
 #contact {
-  height: 500px;
+  height: 800px;
 }
 
 #projects {

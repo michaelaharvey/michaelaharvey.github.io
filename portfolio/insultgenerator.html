@@ -1,0 +1,89 @@
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<script src="http://platform.twitter.com/widgets.js"></script>
+</head>
+
+
+<div class="open"><br><br><p class="lead">Welcome to Insult Generator, Asshole!</p></div>
+<div class = "buttonholder">
+    <button class="btn btn-danger btn-lg" id="qButton">Fuck you!</button>
+</div>
+
+<div id="quotediv"></div>
+
+<style>
+
+.buttonholder {
+  text-align: center;
+    padding: 60px;
+}
+
+#quotediv {
+  text-align: center;
+  font-size: 30px;
+}
+
+.tweeeet {
+  text-align: center;
+  padding: 60px;
+}
+
+h1 {
+  text-align: center;
+}
+
+p {
+  text-align: center;
+  font-size: 40px;
+}
+
+.lead {
+  font-size: 40px;
+}
+
+</style>
+
+<script>
+
+var quotes = ["Fuck you!", "You're a piece of shit!", "Eat my ass!", "Dick!"];
+
+var quotedivtext = document.getElementById('quotediv');
+var i = quotes.length;
+
+
+function getquote() {
+  
+var j = i % quotes.length;
+  
+  
+  var write ='<p class="lead">' + quotes[j] + '</p>';
+  write += '<div class="buttonholder"><a class="btn btn-primary btn-lg" href="http://www.twitter.com/intent/tweet?text=' + quotes[j] + '&" target="_blank">Tweet</a></div>';
+  
+quotedivtext.innerHTML = write;
+i++;
+
+}
+
+var quotebutton = document.getElementById('qButton');
+
+quotebutton.addEventListener("click", getquote);
+
+
+
+
+</script>
+
+
+
+
+
+
+
+

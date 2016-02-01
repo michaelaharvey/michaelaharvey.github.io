@@ -1,0 +1,46 @@
+<h1> Wiki search: </h1>
+
+<form>
+	<input type="text" id="query"><button id="search" onclick="return false;">Search</button>
+</form>
+
+
+<div class="display"></div>
+
+
+
+<script>
+
+var x = document.querySelector('.display');
+
+
+document.getElementById('search').addEventListener("click", function() {
+	x.innerHTML = "";
+	var query = document.getElementById('query').value;
+	var script = document.createElement('script');
+	script.src = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + query + '&limit=5&namespace=0&format=json&callback=foo';
+	document.getElementsByTagName('head')[0].appendChild(script);
+
+});
+
+function foo(data){
+	console.log(data);
+	if (data[1].length == 0) {
+		x.innerHTML = 'No result';
+	}
+	else {
+		for (var j = 0; j < 5; j++) {
+
+
+			x.innerHTML += '<a href="' + data[3][j] + '" target="_blank">' + data[1][j] + '</a>' + '<br>';
+			x.innerHTML += data[2][j] + '<br>';
+			x.innerHTML += data[3][j] + '<br>';
+			x.innerHTML += '<br>';
+		}
+	}
+
+}
+
+
+
+</script>

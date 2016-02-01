@@ -1,0 +1,41 @@
+<div class="display"></div>
+
+
+
+
+
+
+
+
+<script>
+
+function httpGetAsync(theUrl, callback){
+   var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+    xmlHttp.send(null);
+}
+
+
+httpGetAsync("http://www.freecodecamp.com/news/hot", function(data){
+	var obj = JSON.parse(data);
+	console.log(obj);
+	getObj(obj);
+});
+
+var y = document.querySelector('.display');
+
+function getObj(x) {
+	for (var i = 0; i < x.length; i++) {
+		y.innerHTML += '<a href="' + x[i].link + '">' + x[i].headline + '</a>' + '<br>';
+		y.innerHTML += 'By: ' + x[i].author.username + '<br>';
+		y.innerHTML += 'Upvotes: ' + x[i].upVotes.length + '<br><br>';
+
+		
+	}
+}
+
+</script>

@@ -1,0 +1,136 @@
+<div class="title">Pomodoro clock!</div>
+<div class="inputs">
+<br>
+<form>
+ Countdown time (minutes):<br>
+  <input type="text" name="minutes" id="apple" size="5">
+  <br>
+  Break time (minutes):<br>
+  <input type="text" name="seconds" id="banana" size="5">
+  <br><br>
+  <input type="button" value="Start" id="start"><br><br><div id="reset"></div>
+</form>
+
+</div>
+
+<br>
+
+<div id="remain"></div>
+<div id="status"></div>
+<div id="remain2"></div>
+<div id="upstatus"></div>
+<div id="pomcount"></div>
+
+<style>
+.inputs {
+  text-align: center;
+}
+
+#status {
+  text-align: center;
+}
+
+#remain {
+  text-align: center;
+}
+
+#remain2 {
+  text-align: center;
+}
+
+#upstatus {
+  text-align: center;
+}
+
+#pomcount {
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+}
+
+.title {
+text-align: center;
+ font-size: 20px;
+}
+</style>
+
+
+<script type="text/javascript">var element = document.getElementById('status');
+var element2 = document.getElementById('upstatus');
+var element3 = document.getElementById('reset');
+var element4 = document.getElementById('pomcount');
+var element5 = document.getElementById('remain');
+var element6 = document.getElementById('remain2');
+i = 1;
+
+document.getElementById('start').addEventListener("click", function() {
+  secz = parseInt(document.getElementById('banana').value);
+  secs = parseInt(document.getElementById('apple').value);
+  write();
+  document.getElementById('reset').innerHTML = '<input type="button" id="reset" value="Reset">';
+  
+  countDown(secs * 60);
+
+});
+
+element3.addEventListener("click", function() {
+  i = 1;
+  clearTimeout(timer);
+  element.innerHTML = '';
+  element2.innerHTML = '';
+  element4.innerHTML = '';
+  element5.innerHTML = '';
+  element6.innerHTML = '';
+  clearTimeout(timer2);
+
+})
+
+function countDown(abc) {
+  minutes = Math.floor(abc / 60);
+  seconds = abc % 60;
+  if (seconds < 10) {
+    seconds = '0' + seconds;
+  }
+  element.innerHTML = minutes + ':' + seconds;
+  if (abc < 1) {
+    i++;
+    countUp(secz * 60);
+    element.innerHTML = nil;
+
+  }
+
+  abc--;
+
+  element4.innerHTML = 'Round: ' + i;
+
+  timer = setTimeout('countDown(' + abc + ')', 1000);
+}
+
+function countUp(def) {
+
+  var minutes = Math.floor(def / 60);
+  var seconds = def % 60;
+  if (seconds < 10) {
+    seconds = '0' + seconds;
+  }
+
+  element6.innerHTML = "Break remaining:";
+  element2.innerHTML = minutes + ':' + seconds;
+
+  if (def < 1) {
+    countDown(secs * 60);
+    element2.innerHTML === nil;
+
+  }
+
+  def--;
+  timer2 = setTimeout('countUp(' + def + ')', 1000);
+
+}
+
+function write() {
+  element5.innerHTML = "Countdown remaining:";
+}
+</script>

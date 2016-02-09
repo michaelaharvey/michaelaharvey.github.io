@@ -219,3 +219,11 @@ body {
     width: 700px;
   }
 }
+
+.codepen {
+  background-color: white;
+  height: 42px;
+  width: 42px;
+  margin: 0 auto;
+  border-radius: 10px;
+}

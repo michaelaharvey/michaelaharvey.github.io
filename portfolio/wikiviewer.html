@@ -1,46 +1,91 @@
-<h1> Wiki search: </h1>
+		<!DOCTYPE html>
+		<html>
+		<head>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-<form>
-	<input type="text" id="query"><button id="search" onclick="return false;">Search</button>
-</form>
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-<div class="display"></div>
+			<title>Wiki Viewer</title>
+		</head>
+		<body>
+			
+	<div class="search">
+		<h1> Wiki search: </h1>
 
+		<form>
+			<input type="text" id="query"><button id="search" class="btn btn-primary btn-sm" onclick="return false;">Search</button>
+		</form>
+	</div>
+	<br>
 
-
-<script>
-
-var x = document.querySelector('.display');
-
-
-document.getElementById('search').addEventListener("click", function() {
-	x.innerHTML = "";
-	var query = document.getElementById('query').value;
-	var script = document.createElement('script');
-	script.src = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + query + '&limit=5&namespace=0&format=json&callback=foo';
-	document.getElementsByTagName('head')[0].appendChild(script);
-
-});
-
-function foo(data){
-	console.log(data);
-	if (data[1].length == 0) {
-		x.innerHTML = 'No result';
-	}
-	else {
-		for (var j = 0; j < 5; j++) {
+		<div class="display"></div>
 
 
-			x.innerHTML += '<a href="' + data[3][j] + '" target="_blank">' + data[1][j] + '</a>' + '<br>';
-			x.innerHTML += data[2][j] + '<br>';
-			x.innerHTML += data[3][j] + '<br>';
-			x.innerHTML += '<br>';
+
+		<script>
+
+		var x = document.querySelector('.display');
+
+
+		document.getElementById('search').addEventListener("click", function() {
+			x.innerHTML = "";
+			var query = document.getElementById('query').value;
+			var script = document.createElement('script');
+			script.src = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + query + '&limit=5&namespace=0&format=json&callback=foo';
+			document.getElementsByTagName('head')[0].appendChild(script);
+
+		});
+
+		function foo(data){
+			console.log(data);
+			if (data[1].length == 0) {
+				x.innerHTML = 'No result';
+			}
+			else {
+				for (var j = 0; j < 5; j++) {
+
+
+					x.innerHTML += '<div class="item"><a href="' + data[3][j] + '" target="_blank">' + data[1][j] + '</a>' + '<br>' + data[2][j] + '<br>' + data[3][j] + '</div><br><br>';
+				}
+			}
+
 		}
-	}
-
-}
 
 
 
-</script>
+		</script>
+		</body>
+		</html>
+
+		<style type="text/css">
+		.search {
+			text-align: center;
+		}
+
+		.display {
+
+		}
+
+		.item {
+			margin: 0 auto;
+			border-radius: 5px;
+			border: 2px solid black;
+			width: 80%;
+
+		}
+
+		</style>
+
+
+
+
+
+
+
+
+

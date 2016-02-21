@@ -8,7 +8,13 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
 		<!-- Latest compiled and minified JavaScript -->
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+		
+
 
 			<title>Wiki Viewer</title>
 		</head>
@@ -29,28 +35,51 @@
 
 		<script>
 
+
 		var x = document.querySelector('.display');
+		var curUrl = window.location.href;
+		console.log(curUrl);
+
+		var hashBrowns = curUrl.match(/#(.*)/);
+
+		if (hashBrowns == null) {
+			console.log("empty");
+		}
+		else {
+			var superHash = hashBrowns[1];
+			console.log(superHash);
+			x.innerHTML = "";
+			var scripts = document.createElement('script');
+			scripts.src = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + superHash + '&limit=5&namespace=0&format=json&callback=foo';
+			document.getElementsByTagName('head')[0].appendChild(scripts);
+		}
 
 
-		document.getElementById('search').addEventListener("click", function() {
+
+		function bar() {
 			x.innerHTML = "";
 			var query = document.getElementById('query').value;
 			var script = document.createElement('script');
 			script.src = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + query + '&limit=5&namespace=0&format=json&callback=foo';
 			document.getElementsByTagName('head')[0].appendChild(script);
+			location.hash = query;
+		}
+		
 
-		});
+
+		document.getElementById('search').addEventListener("click", bar, false);
 
 		function foo(data){
 			console.log(data);
 			if (data[1].length == 0) {
-				x.innerHTML = 'No result';
+				x.innerHTML = '<div class="item">No result</div>';
 			}
 			else {
 				for (var j = 0; j < 5; j++) {
 
 
 					x.innerHTML += '<div class="item"><a href="' + data[3][j] + '" target="_blank">' + data[1][j] + '</a>' + '<br>' + data[2][j] + '<br>' + data[3][j] + '</div><br><br>';
+
 				}
 			}
 
@@ -74,8 +103,9 @@
 		.item {
 			margin: 0 auto;
 			border-radius: 5px;
-			border: 2px solid black;
+			border: 3px solid black;
 			width: 80%;
+			padding: 10px;
 
 		}
 

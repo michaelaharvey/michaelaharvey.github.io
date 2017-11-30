@@ -1,0 +1,37 @@
+hello
+
+<h1>To programmatically add an event to the task scheduler in C# .Net, first you will need an XML file with your event. </h1>
+
+<h1>To obtain an XML event file, go to the task scheduler and create an event to your liking. When finished, export the event.</h1>
+
+<h1>In the code, you can now read your event from this file and schedule your event as follows. </h1>
+
+<code>
+// Create scheduled task<br>
+        public static void Create(string taskName, string taskPath)<br>
+        {<br>
+            Process p = new Process();<br>
+            p.StartInfo.FileName = "schtasks.exe";<br>
+            //p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;<br>
+            p.StartInfo.UseShellExecute = false;<br>
+            p.StartInfo.Arguments = "/create /tn " + taskName + " /XML " + "\"" + taskPath + "\"" + " /f";<br>
+            p.StartInfo.RedirectStandardOutput = true;<br>
+            p.StartInfo.RedirectStandardError = true;<br>
+            p.StartInfo.CreateNoWindow = true;<br>
+            p.Start();<br>
+
+            string output = p.StandardOutput.ReadToEnd();<br>
+            string err = p.StandardError.ReadToEnd();<br>
+<br>
+            if (!string.IsNullOrWhiteSpace(output))<br>
+            {<br>
+                System.Windows.Forms.MessageBox.Show(output);<br>
+            }<br>
+            if (!string.IsNullOrWhiteSpace(err))<br>
+            {<br>
+                System.Windows.Forms.MessageBox.Show(err);<br>
+            }<br>
+            <br>
+            p.WaitForExit();<br>
+        }<br>
+        <code>
